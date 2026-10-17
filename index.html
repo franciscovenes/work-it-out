@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work it out!</title>
+  </head>
+  <body>
+    <template id="home-template">
+      <div>
+        <h1>Routine #<!--number--></h1>
+        <ul>
+          <li>
+            <!-- # exercises -->
+            exercises
+          </li>
+
+          <li>
+            <!-- # exercises -->
+            sets
+          </li>
+        </ul>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>EXERCISE</th>
+            <th>REPS</th>
+            <th>WEIGHT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ROUTINE GOES IN HERE-->
+        </tbody>
+      </table>
+      <button type="button" id="start-workout">Work it out!</button>
+    </template>
+    <template id="exercise-template">
+      <h1 id="name">Exercise name goes in here</h1>
+    </template>
+    <main>
+      <div id="app"></div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,9 +1,11 @@
 export const routine = {
+  name: "My routine",
   sets: 3,
   exercises: [
     {
       id: "550e8400-e29b-41d4-a716-446655440001",
       name: "Leg Press",
+      machineNum: 15,
       minReps: 12,
       maxReps: 14,
       weightKg: 60,
@@ -11,6 +13,7 @@ export const routine = {
     {
       id: "550e8400-e29b-41d4-a716-446655440002",
       name: "Chest Press",
+      machineNum: 2,
       minReps: 12,
       maxReps: 14,
       weightKg: 20,
@@ -18,9 +21,42 @@ export const routine = {
     {
       id: "550e8400-e29b-41d4-a716-446655440003",
       name: "Leg extension",
+      machineNum: 10,
       minReps: 12,
       maxReps: 14,
       weightKg: 30,
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440004",
+      name: "Pull Down",
+      machineNum: 9,
+      minReps: 12,
+      maxReps: 14,
+      weightKg: 25,
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440005",
+      name: "Adductor",
+      machineNum: 13,
+      minReps: 12,
+      maxReps: 14,
+      weightKg: 60,
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440006",
+      name: "Row",
+      machineNum: 6,
+      minReps: 12,
+      maxReps: 14,
+      weightKg: 20,
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440007",
+      name: "Climb up and down",
+      machineNum: null,
+      minReps: 12,
+      maxReps: 14,
+      weightKg: 5,
     },
   ],
 };

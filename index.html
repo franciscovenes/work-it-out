@@ -3,44 +3,131 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Work it out!</title>
   </head>
   <body>
     <template id="home-template">
-      <div>
-        <h1>Routine #<!--number--></h1>
-        <ul>
-          <li>
-            <!-- # exercises -->
-            exercises
-          </li>
+      <div class="home-container">
+        <div class="routine">
+          <div class="routine-header">
+            <h1 id="routine-title" class="routine-title">
+              <!-- Routine name -->
+            </h1>
+            <ul class="routine-definitions">
+              <li>
+                <span id="exercise-count"><!-- # exercises --></span>
+                exercises
+              </li>
 
-          <li>
-            <!-- # exercises -->
-            sets
-          </li>
-        </ul>
+              <li>
+                <span id="set-count"><!-- # sets --></span>
+                sets
+              </li>
+            </ul>
+          </div>
+          <table class="routine-table">
+            <thead>
+              <tr>
+                <th>EXERCISE</th>
+                <th class="right-columns">REPS</th>
+                <th class="right-columns">WEIGHT</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <!-- EXERCISE ROWS GO IN HERE-->
+            </tbody>
+          </table>
+        </div>
+
+        <button type="button" id="start-workout" class="start-btn">
+          Work it out!
+        </button>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>EXERCISE</th>
-            <th>REPS</th>
-            <th>WEIGHT</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- ROUTINE GOES IN HERE-->
-        </tbody>
-      </table>
-      <button type="button" id="start-workout">Work it out!</button>
     </template>
     <template id="exercise-template">
-      <h1 id="name">Exercise name goes in here</h1>
+      <div class="exercise-container">
+        <div class="exercise-set">
+          Set <span id="current-set"><!-- Set number --></span>
+        </div>
+        <div class="exercise-heading">
+          <h1 id="exercise-name" class="exercise-name">
+            <!-- Exercise name -->
+          </h1>
+          <!-- Machine number goes in here -->
+        </div>
+
+        <div class="image-placeholder"></div>
+        <div class="exercise-sets">
+          <h2 class="exercise-subtitle">REPS</h2>
+          <p id="exercise-reps">
+            <!-- Exercise set range -->
+          </p>
+        </div>
+        <div class="exercise-weight">
+          <h2 class="exercise-subtitle weight-title">WEIGHT</h2>
+          <ul class="exercise-weight-controls left-control">
+            <li>
+              <button
+                type="button"
+                data-weight-change="-2.5"
+                class="weight-adjustment"
+              >
+                -2.5kg
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                data-weight-change="-5"
+                class="weight-adjustment"
+              >
+                -5kg
+              </button>
+            </li>
+          </ul>
+          <p id="exercise-weight-value" class="exercise-weight-value">
+            <!-- Exercise weight -->
+          </p>
+          <ul class="exercise-weight-controls">
+            <li>
+              <button
+                type="button"
+                data-weight-change="2.5"
+                class="weight-adjustment"
+              >
+                +2.5kg
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                data-weight-change="5"
+                class="weight-adjustment"
+              >
+                +5kg
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="routine-navigation">
+          <button type="button" id="navigate-previous">
+            <i data-lucide="arrow-left"></i>Prev
+          </button>
+          <button type="button" id="navigate-next">
+            Next<i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </div>
     </template>
     <main>
-      <div id="app"></div>
+      <div id="app" class="app-container"></div>
     </main>
     <script type="module" src="/src/main.js"></script>
   </body>

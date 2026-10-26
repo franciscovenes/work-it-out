@@ -1,7 +1,7 @@
 import { routine } from "../data/routine";
 import { createIcons, ArrowLeft, ArrowRight } from "lucide";
 
-export const setupHomeScreen = (navigate) => {
+export const setupHomeScreen = (navigateTo) => {
   const startBtn = document.getElementById("start-workout");
   const title = document.getElementById("routine-title");
   const exerciseCount = document.getElementById("exercise-count");
@@ -54,16 +54,11 @@ export const setupHomeScreen = (navigate) => {
   startBtn.addEventListener("click", () => {
     // When clicked, the startBtn renders the exercise-template
     const exerciseId = routine.exercises[0].id;
-    navigate("exercise-template", exerciseId);
+    navigateTo(exerciseId, 1);
   });
 };
 
-export const setupExerciseScreen = (
-  exerciseId,
-  currentSet,
-  updateCurrentSet,
-  navigate,
-) => {
+export const setupExerciseScreen = (exerciseId, currentSet, navigateTo) => {
   // Check the exercise with exerciseId exists
   const exercise = routine.exercises.find(
     (exercise) => exercise.id === exerciseId,
@@ -99,12 +94,10 @@ export const setupExerciseScreen = (
   repsEl.textContent = `${minReps}-${maxReps}`;
   weightValueEl.textContent = weightKg;
 
-  // If machineNum exists, create element and add it to DOM
+  // If machineNum exists, at it to the corresponding element
   if (machineNum !== null) {
-    const machineNumEl = document.createElement("div");
-    machineNumEl.classList.add("exercise-machine");
+    const machineNumEl = document.getElementById("exercise-machine");
     machineNumEl.textContent = `M ${machineNum}`;
-    nameEl.after(machineNumEl);
   }
 
   // Add navigation icons
@@ -144,6 +137,8 @@ export const setupExerciseScreen = (
 
       exercise.weightKg = newWeightValue;
       weightValueEl.textContent = newWeightValue;
+
+      sessionStorage.setItem("routine", JSON.stringify(routine));
     });
   });
 
@@ -159,19 +154,23 @@ export const setupExerciseScreen = (
     // Add event listeners to prev nav button
 
     prevBtn.addEventListener("click", () => {
-      let prevExerciseId;
+      let destinationExerciseId;
+      let destinationSet = currentSet;
       if (currExerciseIndex === 0 && currentSet > 1) {
-        updateCurrentSet(-1);
-        ({ id: prevExerciseId } =
+        // updateCurrentSet(-1);
+        destinationSet--;
+        ({ id: destinationExerciseId } =
           routine.exercises[routine.exercises.length - 1]);
       } else if (currExerciseIndex > 0) {
-        ({ id: prevExerciseId } = routine.exercises[currExerciseIndex - 1]);
+        ({ id: destinationExerciseId } =
+          routine.exercises[currExerciseIndex - 1]);
       }
-      navigate("exercise-template", prevExerciseId);
+      navigateTo(destinationExerciseId, destinationSet);
     });
   }
 
   const nextBtn = document.getElementById("navigate-next");
+  const finishBtn = document.getElementById("navigate-finish");
 
   // On last exercise (of the last set)
   if (
@@ -179,21 +178,32 @@ export const setupExerciseScreen = (
     currentSet === routine.sets
   ) {
     // Disable next button
-    nextBtn.disabled = true;
+    // nextBtn.disabled = true;
+    // Replace visibility of next button with finish button
+    nextBtn.classList.add("hide");
+    finishBtn.classList.remove("hide");
+
+    finishBtn.addEventListener("click", () => {
+      // Add send to backend logic
+      sessionStorage.removeItem("routine");
+      navigateTo();
+    });
   } else {
     // Add event listeners to prev nav button
     nextBtn.addEventListener("click", () => {
-      let nextExerciseId;
+      let destinationExerciseId;
+      let destinationSet = currentSet;
       if (
         currExerciseIndex === routine.exercises.length - 1 &&
         currentSet < routine.sets
       ) {
-        updateCurrentSet(1);
-        ({ id: nextExerciseId } = routine.exercises[0]);
+        destinationSet++;
+        ({ id: destinationExerciseId } = routine.exercises[0]);
       } else if (currExerciseIndex < routine.exercises.length - 1) {
-        ({ id: nextExerciseId } = routine.exercises[currExerciseIndex + 1]);
+        ({ id: destinationExerciseId } =
+          routine.exercises[currExerciseIndex + 1]);
       }
-      navigate("exercise-template", nextExerciseId);
+      navigateTo(destinationExerciseId, destinationSet);
     });
   }
 };

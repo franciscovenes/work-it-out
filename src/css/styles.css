@@ -186,6 +186,8 @@ body {
 .exercise-machine {
   font-family: var(--font-secondary);
   font-size: var(--font-size-lg);
+  line-height: 1.25;
+  min-height: 1.25lh;
 }
 
 .image-placeholder {
@@ -258,4 +260,20 @@ body {
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-sm);
+}
+
+.routine-navigation > button:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.routine-navigation > .hide {
+  display: none;
+}
+
+.routine-navigation > .navigate-finish {
+  border: solid 1px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: var(--color-tertiary-text);
 }

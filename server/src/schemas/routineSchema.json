@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:work-it-out:routine",
+  "title": "Routine",
+  "description": "A workout routine",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "sets": {
+      "type": "number",
+      "minimum": 1
+    },
+    "exercises": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "machineNum": {
+            "type": ["integer", "null"]
+          },
+          "minReps": {
+            "type": "integer",
+            "exclusiveMinimum": 0
+          },
+          "maxReps": {
+            "type": "integer",
+            "exclusiveMinimum": 0
+          },
+          "weightKg": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "machineNum",
+          "minReps",
+          "maxReps",
+          "weightKg"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": ["name", "sets", "exercises"],
+  "additionalProperties": false
+}

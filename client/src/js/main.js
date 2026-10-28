@@ -1,15 +1,39 @@
 import "../css/styles.css";
-import { routine } from "../data/routine";
+// import { routine } from "../data/routine";
 import { renderTemplate } from "./render";
 import { setupHomeScreen, setupExerciseScreen } from "./screens";
 
 const sessionRoutine = sessionStorage.getItem("routine");
 
+let routine;
+let errorState;
+let currentSet;
+
 if (sessionRoutine !== null) {
-  routine.exercises = JSON.parse(sessionRoutine).exercises;
+  try {
+    routine = JSON.parse(sessionRoutine);
+  } catch (error) {
+    console.error("Invalid routine in session storage:", error);
+    sessionStorage.removeItem("routine");
+  }
 }
 
-let currentSet = history.state?.set ?? 1;
+if (routine === undefined) {
+  try {
+    const response = await fetch(import.meta.env.VITE_API_URL);
+
+    if (!response.ok) {
+      const { error } = await response.json();
+      errorState = error;
+    } else {
+      routine = await response.json();
+      sessionStorage.setItem("routine", JSON.stringify(routine));
+    }
+  } catch (error) {
+    console.error(error);
+    errorState = error.message;
+  }
+}
 
 const appContainer = document.getElementById("app");
 
@@ -73,6 +97,10 @@ export const navigateTo = (destinationExerciseId, destinationSet) => {
 };
 
 const renderCurrentRoute = () => {
+  if (errorState !== undefined) {
+    appContainer.textContent = errorState;
+    return;
+  }
   const { templateId, exerciseId } = resolveRoute();
 
   if (templateId === null) {

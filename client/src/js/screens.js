@@ -183,10 +183,26 @@ export const setupExerciseScreen = (exerciseId, currentSet, navigateTo) => {
     nextBtn.classList.add("hide");
     finishBtn.classList.remove("hide");
 
-    finishBtn.addEventListener("click", () => {
-      // Add send to backend logic
-      sessionStorage.removeItem("routine");
-      navigateTo();
+    finishBtn.addEventListener("click", async () => {
+      try {
+        const response = await fetch(import.meta.env.VITE_API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(routine),
+        });
+
+        if (!response.ok) {
+          const { error } = await response.json();
+          throw error;
+        } else {
+          sessionStorage.removeItem("routine");
+          navigateTo();
+        }
+      } catch (error) {
+        console.error(error);
+      }
     });
   } else {
     // Add event listeners to prev nav button

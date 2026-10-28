@@ -1,13 +1,9 @@
 import fs from "node:fs/promises";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { resolveDataPath } from "./resolveDataPath.js";
 
 export async function getData() {
   try {
-    const pathJSON = path.resolve(
-      path.dirname(fileURLToPath(import.meta.url)),
-      "../data/routine.json",
-    );
+    const pathJSON = resolveDataPath();
 
     const data = await fs.readFile(pathJSON, "utf8");
     return JSON.parse(data);

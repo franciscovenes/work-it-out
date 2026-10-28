@@ -5,6 +5,7 @@ import { sendResponse } from "./utils/sendResponse.js";
 import { parseJSONBody } from "./utils/parseJSONBody.js";
 
 const PORT = process.env.PORT || 8000;
+const HOST = process.env.HOST || "127.0.0.1";
 
 const server = http.createServer(async (req, res) => {
   try {
@@ -46,4 +47,6 @@ const server = http.createServer(async (req, res) => {
     }
   }
 });
-server.listen(PORT, () => console.log(`Listening to server in PORT ${PORT}`));
+server.listen(PORT, HOST, () =>
+  console.log(`Listening to server in PORT ${PORT}`),
+);

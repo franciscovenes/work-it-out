@@ -43,6 +43,7 @@ const updateCurrentSet = (adjustment) => {
 
 export const resolveRoute = () => {
   const { pathname } = window.location;
+
   const destinationObj = {
     templateId: null,
     exerciseId: null,
@@ -51,6 +52,7 @@ export const resolveRoute = () => {
     destinationObj.templateId = "home-template";
   } else if (pathname.startsWith("/exercise/")) {
     const exerciseId = pathname.split("/")[2];
+
     const exerciseExists = routine.exercises.some(
       (exercise) => exercise.id === exerciseId,
     );
@@ -112,10 +114,10 @@ const renderCurrentRoute = () => {
   // Setup the screen for the template
   switch (templateId) {
     case "home-template":
-      setupHomeScreen(navigateTo);
+      setupHomeScreen(navigateTo, routine);
       break;
     case "exercise-template":
-      setupExerciseScreen(exerciseId, currentSet, navigateTo);
+      setupExerciseScreen(exerciseId, currentSet, navigateTo, routine);
       break;
   }
 };

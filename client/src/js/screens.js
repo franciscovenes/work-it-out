@@ -1,7 +1,6 @@
-import { routine } from "../data/routine";
 import { createIcons, ArrowLeft, ArrowRight } from "lucide";
 
-export const setupHomeScreen = (navigateTo) => {
+export const setupHomeScreen = (navigateTo, routine) => {
   const startBtn = document.getElementById("start-workout");
   const title = document.getElementById("routine-title");
   const exerciseCount = document.getElementById("exercise-count");
@@ -58,7 +57,12 @@ export const setupHomeScreen = (navigateTo) => {
   });
 };
 
-export const setupExerciseScreen = (exerciseId, currentSet, navigateTo) => {
+export const setupExerciseScreen = (
+  exerciseId,
+  currentSet,
+  navigateTo,
+  routine,
+) => {
   // Check the exercise with exerciseId exists
   const exercise = routine.exercises.find(
     (exercise) => exercise.id === exerciseId,
@@ -173,12 +177,11 @@ export const setupExerciseScreen = (exerciseId, currentSet, navigateTo) => {
   const finishBtn = document.getElementById("navigate-finish");
 
   // On last exercise (of the last set)
+
   if (
     currExerciseIndex >= routine.exercises.length - 1 &&
     currentSet === routine.sets
   ) {
-    // Disable next button
-    // nextBtn.disabled = true;
     // Replace visibility of next button with finish button
     nextBtn.classList.add("hide");
     finishBtn.classList.remove("hide");

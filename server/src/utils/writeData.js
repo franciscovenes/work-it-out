@@ -1,13 +1,9 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import fs from "node:fs/promises";
+import { resolveDataPath } from "./resolveDataPath.js";
 
 export async function writeData(content) {
   try {
-    const pathJSON = path.resolve(
-      path.dirname(fileURLToPath(import.meta.url)),
-      "../data/routine.json",
-    );
+    const pathJSON = resolveDataPath();
 
     await fs.writeFile(pathJSON, JSON.stringify(content, null, 2));
   } catch (error) {

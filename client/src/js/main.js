@@ -1,13 +1,14 @@
 import "../css/styles.css";
-// import { routine } from "../data/routine";
 import { renderTemplate } from "./render";
 import { setupHomeScreen, setupExerciseScreen } from "./screens";
 
 const sessionRoutine = sessionStorage.getItem("routine");
+const sessionSet = sessionStorage.getItem("set");
+
+let currentSet = sessionSet === null ? undefined : Number(sessionSet);
 
 let routine;
 let errorState;
-let currentSet;
 
 if (sessionRoutine !== null) {
   try {
@@ -92,6 +93,7 @@ export const navigateTo = (destinationExerciseId, destinationSet) => {
 
     // Update currentSet.
     currentSet = destinationSet;
+    sessionStorage.setItem("set", destinationSet);
   }
 
   // Call your existing route-rendering function.

@@ -201,6 +201,7 @@ export const setupExerciseScreen = (
           throw error;
         } else {
           sessionStorage.removeItem("routine");
+          sessionStorage.removeItem("set");
           navigateTo();
         }
       } catch (error) {

@@ -47,6 +47,8 @@ const server = http.createServer(async (req, res) => {
     }
   }
 });
+
+// Listen to server
 server.listen(PORT, HOST, () =>
   console.log(`Listening to server in PORT ${PORT}`),
 );

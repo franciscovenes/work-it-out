@@ -6,7 +6,7 @@ import { sendError } from "./utils/sendError.js";
 const PORT = process.env.PORT || 8000;
 const HOST = process.env.HOST || "127.0.0.1";
 
-// Create the server
+// Create the server and api
 const server = http.createServer(async (req, res) => {
   try {
     const { origin } = req.headers;

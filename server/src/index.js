@@ -1,8 +1,6 @@
 import http from "node:http";
 import { handleGetRoutine, handlePostRoutine } from "./routes/routes.js";
 import { sendError } from "./utils/sendError.js";
-import { sendResponse } from "./utils/sendResponse.js";
-import { parseJSONBody } from "./utils/parseJSONBody.js";
 
 const PORT = process.env.PORT || 8000;
 const HOST = process.env.HOST || "127.0.0.1";

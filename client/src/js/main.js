@@ -2,6 +2,7 @@ import "../css/styles.css";
 import { renderTemplate } from "./render";
 import { setupHomeScreen, setupExerciseScreen } from "./screens";
 
+// Grab variables from session storage
 const sessionRoutine = sessionStorage.getItem("routine");
 const sessionSet = sessionStorage.getItem("set");
 

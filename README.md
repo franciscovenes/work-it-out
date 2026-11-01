@@ -1,28 +1,28 @@
 # Work it out!
 
-# Work it out!
-
 **Work it out!** is a simple workout application for managing and following exercise routines. I created it to replace the spreadsheet-based structure used in my fitness academy. It provides a straightforward interface for working through a sequence of exercises, with configurable sets, repetitions and weights.
 
 ## Version
 
-**v1.0 — Initial release**
+**v1.0.0 — Initial release**
 
 Future versions will be published as separate [GitHub Releases](https://github.com/franciscovenes/work-it-out/releases).
 
 ## Features
 
-- Organise exercises into workout routines. <!-- There is no create routine route. This versio still requires direct JSON file edition. This incldes set and reps-->
-- Define the number of sets and repetition ranges.
-- Set and adjust exercise weights <!-- User can adjust weights and persist them, but not set the initial value -->.
-- Navigate through a workout sequence.
-- Persist routine data through a dedicated API.
+- Follow a predefined workout routine.
+- Configure the number of sets and repetition ranges through the routine's JSON data.
+- Adjust exercise weights during a workout and persist the changes.
+- Navigate through a sequence of exercises.
+- Retrieve and persist routine data through a dedicated API.
+
+Routine configuration currently requires direct editing of the JSON data. Creating and managing routines through the application interface is planned for a future release.
 
 ## Tech stack
 
 | Area               | Technologies                |
 | ------------------ | --------------------------- |
-| Frontend           | HTML, CSS, JavaScript, Vite |
+| Frontend           | JavaScript, HTML, CSS, Vite |
 | Backend            | Node.js native HTTP server  |
 | Data persistence   | JSON file                   |
 | Package management | pnpm                        |
@@ -32,7 +32,7 @@ Future versions will be published as separate [GitHub Releases](https://github.c
 
 The application is divided into two independent components:
 
-- **Client:** A frontend application built with Vite, responsible for the user interface and interaction. <!-- JavaScript is more important than Vite and not mentioned -->
+- **Client:** A JavaScript frontend application, built with Vite, responsible for the user interface and interaction.
 - **Server:** A lightweight Node.js API responsible for handling requests and persisting application data.
 
 This separation allows the frontend and backend to be developed and deployed independently.
@@ -51,13 +51,13 @@ The API runs on a Debian VPS, behind an Nginx reverse proxy, with HTTPS configur
 
 The Node.js application runs as a systemd service and listens on a local interface. Nginx handles incoming HTTPS requests and forwards API traffic to the application.
 
-### Continuous deployment
+### Automated deployment
 
 API deployment is automated through **GitHub Actions** and SSH.
 
 When changes are pushed to the `main` branch:
 
-1. GitHub Actions starts a deployment workflow.
+1. GitHub Actions starts the deployment workflow.
 2. The workflow establishes an SSH connection to the VPS using a dedicated deployment key.
 3. It invokes a deployment script on the server.
 4. The script fetches the latest repository changes and updates the server checkout.
@@ -107,8 +107,25 @@ pnpm start
 
 The API starts using the server configuration.
 
+## Roadmap
+
+The following improvements are planned for future releases:
+
+### Application architecture
+
+1. **TypeScript:** Migrate the frontend and backend to TypeScript.
+2. **Express:** Replace the native Node.js HTTP server with Express.
+3. **React:** Rebuild the frontend using React.
+4. **CSS Modules:** Adopt CSS Modules for component-scoped styling in the React frontend.
+
+### Features
+
+5. **Routine management:** Add the ability to create and manage workout routines through the application.
+6. **Exercise media:** Replace exercise image placeholders with actual images or animations demonstrating each exercise.
+7. **Workout history:** Record each workout day and track the evolution of repetitions and weights over time.
+
 ## Releases
 
-This repository uses GitHub Releases to keep track of application versions. Each release represents a specific version of the application, starting with **v1.0**.
+This repository uses GitHub Releases to keep track of application versions. **v1.0.0** is the initial release.
 
 See the [GitHub Releases page](https://github.com/franciscovenes/work-it-out/releases) for available versions.

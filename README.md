@@ -1,6 +1,8 @@
 # Work it out!
 
-**Work it out!** is a simple workout application for managing and following exercise routines. It provides a straightforward interface for working through a sequence of exercises, with configurable sets, repetitions and weights.
+# Work it out!
+
+**Work it out!** is a simple workout application for managing and following exercise routines. I created it to replace the spreadsheet-based structure used in my fitness academy. It provides a straightforward interface for working through a sequence of exercises, with configurable sets, repetitions and weights.
 
 ## Version
 
@@ -10,9 +12,9 @@ Future versions will be published as separate [GitHub Releases](https://github.c
 
 ## Features
 
-- Organise exercises into workout routines.
+- Organise exercises into workout routines. <!-- There is no create routine route. This versio still requires direct JSON file edition. This incldes set and reps-->
 - Define the number of sets and repetition ranges.
-- Set and adjust exercise weights.
+- Set and adjust exercise weights <!-- User can adjust weights and persist them, but not set the initial value -->.
 - Navigate through a workout sequence.
 - Persist routine data through a dedicated API.
 
@@ -30,7 +32,7 @@ Future versions will be published as separate [GitHub Releases](https://github.c
 
 The application is divided into two independent components:
 
-- **Client:** A frontend application built with Vite, responsible for the user interface and interaction.
+- **Client:** A frontend application built with Vite, responsible for the user interface and interaction. <!-- JavaScript is more important than Vite and not mentioned -->
 - **Server:** A lightweight Node.js API responsible for handling requests and persisting application data.
 
 This separation allows the frontend and backend to be developed and deployed independently.

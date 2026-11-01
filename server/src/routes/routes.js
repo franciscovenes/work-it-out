@@ -5,6 +5,8 @@ import { sendError } from "../utils/sendError.js";
 import { validateRoutine } from "../utils/validateRoutine.js";
 import { writeData } from "../utils/writeData.js";
 
+// Route handling functions
+
 export async function handleGetRoutine(res) {
   const data = await getData();
   const responseContent = JSON.stringify(data);
